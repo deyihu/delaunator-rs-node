@@ -1,9 +1,8 @@
 {
-  "name": "@napi-rs/package-template",
+  "name": "delaunator-rs-node",
   "version": "1.0.0",
-  "description": "Template project for writing node package with napi-rs",
+  "description": "delaunator-rs binding node with napi-rs",
   "main": "index.js",
-  "repository": "git@github.com:napi-rs/package-template.git",
   "license": "MIT",
   "keywords": [
     "napi-rs",
@@ -18,7 +17,7 @@
     "index.js"
   ],
   "napi": {
-    "name": "package-template",
+    "name": "delaunator-rs-node",
     "triples": {
       "defaults": true,
       "additional": [
@@ -61,7 +60,6 @@
     "@swc/core": "^1.3.22",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
-    "ava": "^5.1.0",
     "benny": "^3.7.1",
     "chalk": "^5.2.0",
     "eslint": "^8.29.0",
