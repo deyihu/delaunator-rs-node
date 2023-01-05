@@ -19,4 +19,4 @@ export interface DResult {
    */
   hull: Array<number>
 }
-export function delaunator(points: Array<Array<number>>): DResult
+export function delaunator(points: Array<number>): DResult

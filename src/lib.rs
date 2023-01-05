@@ -22,7 +22,7 @@ pub struct DResult {
 }
 
 #[napi]
-pub fn delaunator(points: Vec<Vec<f64>>) -> DResult {
+pub fn delaunator(points: Vec<f64>) -> DResult {
   let result: Triangulation = triangulate(&array_to_points(points));
   return DResult {
     triangles: usize_tou32(result.triangles),
@@ -31,14 +31,24 @@ pub fn delaunator(points: Vec<Vec<f64>>) -> DResult {
   };
 }
 
-fn array_to_points(v: Vec<Vec<f64>>) -> Vec<Point> {
+fn array_to_points(v: Vec<f64>) -> Vec<Point> {
   let mut points: Vec<Point> = Vec::new();
-  for item in v {
-    let p = Point {
-      x: item[0],
-      y: item[1],
-    };
-    points.push(p)
+  let mut i = 0;
+  let mut x: f64 = 0.0;
+  let mut y: f64 = 0.0;
+
+  for p in v {
+    if i == 0 {
+      x = p;
+      i += 1;
+      continue;
+    }
+    if i == 1 {
+      y = p;
+      let point = Point { x, y };
+      points.push(point);
+      i = 0;
+    }
   }
   return points;
 }

@@ -1,21 +1,34 @@
 import b from 'benny'
+import Delaunator from 'delaunator';
+import { delaunator } from '../index'
 
-import { plus100 } from '../index'
-
-function add(a: number) {
-  return a + 100
+const POINTS_COUNT = 100 * 1 * 2;
+function randomCoords() {
+  const coords = [];
+  while (coords.length < POINTS_COUNT) {
+    const x = Math.random() * 10000, y = Math.random() * 10000;
+    coords.push(x, y);
+  }
+  return coords;
 }
+
+
+function delaunatorJS(coords: Array<number>) {
+  new Delaunator(coords);
+}
+
+const coords = randomCoords();
 
 async function run() {
   await b.suite(
-    'Add 100',
+    `delaunator points.length=${POINTS_COUNT / 2}`,
 
-    b.add('Native a + 100', () => {
-      plus100(10)
+    b.add('Native', () => {
+      delaunator(coords)
     }),
 
-    b.add('JavaScript a + 100', () => {
-      add(10)
+    b.add('JavaScript', () => {
+      delaunatorJS(coords)
     }),
 
     b.cycle(),

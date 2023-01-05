@@ -4,11 +4,6 @@ const { delaunator } = require('./index')
 
 // console.info('Simple test passed')
 
-const points = [
-    [0, 0],
-    [1, 0],
-    [1, 1],
-    [0, 1],
-]
+const points = [0, 0, 1, 0, 1, 1, 0, 1];
 const result = delaunator(points)
 console.log(result)
